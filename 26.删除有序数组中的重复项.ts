@@ -7,16 +7,15 @@
 // @lc code=start
 function removeDuplicates(nums: number[]): number {
     let count=0;
-    const map=new Map()
     for(let i=0;i<nums.length;i++){
-        if(map.has(nums[i])){
+        if(nums[i]===nums[count]){
             continue;
         }else{
-            nums[count++]=nums[i];
-            map.set(nums[i],true)
+            nums[++count]=nums[i];
         }
     }
-    return map.size;
+    console.log(nums,count)
+    return count+1;
 };
 // @lc code=end
 
