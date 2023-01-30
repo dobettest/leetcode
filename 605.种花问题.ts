@@ -5,18 +5,23 @@
  */
 
 // @lc code=start
+function can() {
+
+}
 function canPlaceFlowers(flowerbed: number[], n: number): boolean {
-    let k = 0;
-    let count = 0;
-    for (let i = 0; i < n; i++) {
-        if (flowerbed[i] === 1) {
-            if (i - k >= 1) {
-                count++;
-            }
-            k=i;
+    const sum: number = flowerbed.reduce((a, b) => a + b);
+    const len: number = flowerbed.length;
+    for (let i = 0; i < len; i++) {
+        const condition1: boolean = i === 0 && flowerbed[i + 1] !== 1;
+        const condition2: boolean = i === len - 1 && flowerbed[i - 1] !== 1;
+        const condition3: boolean = i !== 0 && i !== len - 1 && flowerbed[i + 1] !== 1 && flowerbed[i - 1] !== 1;
+        if (condition1 || condition2 || condition3) {
+            flowerbed[i] = 1;
         }
     }
-    return true;
+    const count: number = flowerbed.reduce((a, b) => a + b);
+    console.log(flowerbed, count, sum)
+    return count - sum >= n;
 };
 // @lc code=end
 
