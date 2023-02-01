@@ -18,22 +18,17 @@
  *     }
  * }
  */
-
 function sumOfLeftLeaves(root: TreeNode | null): number {
     let sum: number = 0;
     if (root === null) {
         return 0;
     }
-    if (root.left === null && root.right === null) {
-        return root.val;
+    let q: TreeNode = root.left;
+    let p: TreeNode = root.right;
+    if (q && q.left === null && q.right === null) {
+        sum += q.val;
     }
-    if (root.left) {
-        sum += sumOfLeftLeaves(root.left);
-    }
-    if (root.right.left) {
-        sum += sumOfLeftLeaves(root.right);
-    }
-    return sum;
+    return sum + sumOfLeftLeaves(q) + sumOfLeftLeaves(p);
 };
 // @lc code=end
 
