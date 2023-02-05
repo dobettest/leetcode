@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=606 lang=typescript
+ * @lc app=leetcode.cn id=108 lang=typescript
  *
- * [606] 根据二叉树创建字符串
+ * [108] 将有序数组转换为二叉搜索树
  */
 
 // @lc code=start
@@ -19,19 +19,8 @@
  * }
  */
 
-function tree2str(root: TreeNode | null): string {
-    let str = "";
-    if (root === null) {
-        return "";
-    }
-    str += root.val;
-    if (root.left || root.right) {
-        str += `(${tree2str(root.left)})`
-    }
-    if (root.right) {
-        str += `(${tree2str(root.right)})`
-    }
-    return str;
+function sortedArrayToBST(nums: number[]): TreeNode | null {
+
 };
 // @lc code=end
 
