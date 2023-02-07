@@ -6,7 +6,8 @@
 
 // @lc code=start
 function countSegments(s: string): number {
-    return s.split(' ').length;
+    const reg: RegExp = /(\s+)?[^\s]+(\s+)?/g;
+    return s.match(reg)?.length ?? 0;
 };
 // @lc code=end
 

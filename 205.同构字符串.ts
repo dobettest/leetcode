@@ -6,17 +6,20 @@
 
 // @lc code=start
 function isIsomorphic(s: string, t: string): boolean {
-    let obj = {};
-    for (let i = 0; i < s.length; i++) {
-        if (obj[s[i]]) {
-            continue;
+    let n = s.length;
+    let s2t: Map<string, string> = new Map<string, string>();
+    let t2s: Map<string, string> = new Map<string, string>();
+    for (let i = 0; i < n; i++) {
+        const c1 = s.charAt(i);
+        const c2 = t.charAt(i);
+        if ((s2t.has(c2) && s2t.get(c2) !== c1) || (t2s.has(c1) && t2s.get(c1) !== c2)) {
+            return false;
         } else {
-            obj[s[i]] = t[i];
+            s2t.set(c2, c1);
+            t2s.set(c1, c2);
         }
     }
-    return s.replace(/[a-zA-Z]/g, function replacer(match) {
-        return obj[match] ?? match
-    }) === t
+    return true;
 };
 // @lc code=end
 

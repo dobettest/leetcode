@@ -9,8 +9,9 @@ function buddyStrings(s: string, goal: string): boolean {
     if (s.length < 2 || goal.length < 2 || s.length !== goal.length) {
         return false;
     }
-    let count = 0;
-    for (let i = 0, k = s.length - 1; i < k; i++) {
+    let count: number = 0;
+    let i = 0, k = s.length - 1
+    for (; i <= k; i++) {
         if (s[i] === goal[i]) {
             continue;
         }
@@ -18,18 +19,20 @@ function buddyStrings(s: string, goal: string): boolean {
             k--;
             continue;
         }
-        if (++count > 2) {
+        if (++count >= 2) {
             return false;
         }
-        let str = [...s];
-        let temp = str[i];
-        str[i] = str[k];
-        str[k] = temp;
-        if (str.join('') === goal) {
-            return true;
+        if (i !== k) {
+            let str = [...s];
+            let temp = str[i];
+            str[i] = str[k];
+            str[k] = temp;
+            if (str.join('') === goal) {
+                return true;
+            }
         }
     }
-    return count === 2 && s === goal;
+    return i === k && new Set(s).size < s.length;
 };
 // @lc code=end
 
