@@ -9,9 +9,11 @@ function buddyStrings(s: string, goal: string): boolean {
     if (s.length < 2 || goal.length < 2 || s.length !== goal.length) {
         return false;
     }
+    if (s === goal) {
+        return /([a-z])([a-z]+)?\1/.test(s)
+    }
     let count: number = 0;
-    let i = 0, k = s.length - 1
-    for (; i <= k; i++) {
+    for (let i = 0, k = s.length - 1; i <= k; i++) {
         if (s[i] === goal[i]) {
             continue;
         }
@@ -19,20 +21,15 @@ function buddyStrings(s: string, goal: string): boolean {
             k--;
             continue;
         }
-        if (++count >= 2) {
+        if (i === k || ++count >= 2) {
             return false;
         }
-        if (i !== k) {
-            let str = [...s];
-            let temp = str[i];
-            str[i] = str[k];
-            str[k] = temp;
-            if (str.join('') === goal) {
-                return true;
-            }
+        if (s[i] === goal[k] && s[k] === goal[i] && s.slice(i + 1, k) === goal.slice(i + 1, k)) {
+            return true;
         }
     }
-    return i === k && new Set(s).size < s.length;
+    console.log(s,'$$$$',  goal)
+    return true;
 };
 // @lc code=end
 

@@ -24,8 +24,12 @@ function minDepth(root: TreeNode | null): number {
         return 0;
     }
     if (root.left || root.right) {
+        if (root.left && root.right) {
+            return 1 + Math.min(minDepth(root.left), minDepth(root.right))
+        }
         return 1 + Math.max(minDepth(root.left), minDepth(root.right))
     }
+    return 1;
 };
 // @lc code=end
 
