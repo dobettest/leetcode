@@ -13,8 +13,9 @@ function buddyStrings(s: string, goal: string): boolean {
         return /([a-z])([a-z]+)?\1/.test(s)
     }
     let count: number = 0;
-    for (let i = 0, k = s.length - 1; i <= k; i++) {
+    for (let i = 0, k = s.length - 1; i <= k;) {
         if (s[i] === goal[i]) {
+            i++;
             continue;
         }
         if (s[k] === goal[k]) {
@@ -27,9 +28,8 @@ function buddyStrings(s: string, goal: string): boolean {
         if (s[i] === goal[k] && s[k] === goal[i] && s.slice(i + 1, k) === goal.slice(i + 1, k)) {
             return true;
         }
+        i++;
     }
-    console.log(s,'$$$$',  goal)
-    return true;
 };
 // @lc code=end
 
