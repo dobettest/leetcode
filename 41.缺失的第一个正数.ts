@@ -6,14 +6,13 @@
 
 // @lc code=start
 function firstMissingPositive(nums: number[]): number {
-    let min = 0;
-    let max = 0;
-    for (let i = 0; i < nums.length; i++) {
-        min = Math.min(max, min + 1);
-        max = Math.max(nums[i], min + 1);
+    let s = new Set(nums)
+    for (let i = 1; ; i++) {
+        if (s.has(i)) {
+            continue;
+        }
+        return i;
     }
-    console.log(max, min);
-    return max;
 };
 // @lc code=end
 
