@@ -1,3 +1,6 @@
-const reg=/([a-zA-Z]+)(?=\s)?/g
-const str="capiTalIze tHe titLe";
-console.log(str.replace(reg,(raw,$1)=>$1))
+const person={
+    age:20
+}
+const arr=new Array(3).fill(person);
+arr[0].age=21;
+console.log(arr)

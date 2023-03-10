@@ -18,18 +18,14 @@
  */
 
 function reverseList(head: ListNode | null): ListNode | null {
-    let q:ListNode=null;
+    let ans = null;
     while (head) {
-        let p:ListNode=new ListNode(head.val);
-        if(q===null){
-            q=p;
-        }else{
-            p.next=q;
-            q=p;
-        }
-        head=head.next;
+        const next = head.next;
+        head.next = ans;
+        ans = head;
+        head = next;
     }
-    return q;
+    return ans;
 };
 // @lc code=end
 
