@@ -21,13 +21,15 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
     if (head === null || head.next === null) {
         return head;
     }
-    let current: ListNode = head;
-    while (current.next) {
-        if (current.val === current.next.val) {
-            current.next = current.next.next;
+    let fast: ListNode = head.next;
+    let slow: ListNode = head;
+    while (fast) {
+        if (slow.val === fast.val) {
+            slow.next = fast.next;
         } else {
-            current = current.next;
+            slow = fast;
         }
+        fast = fast.next;
     }
     return head;
 };
