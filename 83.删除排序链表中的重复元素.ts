@@ -26,10 +26,10 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
     while (fast) {
         if (slow.val === fast.val) {
             slow.next = fast.next;
-        } else {
-            slow = fast;
+        }else{
+            slow=slow.next;
         }
-        fast = fast.next;
+        fast=fast.next;
     }
     return head;
 };
