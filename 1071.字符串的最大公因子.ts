@@ -6,11 +6,18 @@
 
 // @lc code=start
 function gcdOfStrings(str1: string, str2: string): string {
-    const reg: RegExp = /([A-Z]+)+/g;
-    const substr1: string = str1.match(reg)?.[0] ?? "";
-    const substr2: string = str2.match(reg)?.[0] ?? "";
-
-    return substr1.length < substr2.length ? substr1 : substr2;
+    if (str1 + str2 !== str2 + str1) {
+        return "";
+    }
+    let gcd = (a: number, b: number) => {
+        while (b) {
+            let r = b;
+            b = a % b;
+            a = r;
+        }
+        return a;
+    }
+    return str1.substring(0, gcd(str1.length, str2.length));
 };
 // @lc code=end
 
